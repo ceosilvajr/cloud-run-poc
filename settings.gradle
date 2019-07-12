@@ -1,2 +1,8 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
 rootProject.name = 'cloudrun'
-
+include ':publish'
+include ':subscribe'

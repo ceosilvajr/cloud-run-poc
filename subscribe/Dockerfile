@@ -3,7 +3,7 @@
 FROM gradle:jdk8 as builder
 
   # Copy local code to the container image.
-WORKDIR /publish
+WORKDIR /subscribe
 COPY build.gradle.kts .
 COPY src ./src
 
@@ -17,7 +17,7 @@ RUN gradle build assemble
 FROM adoptopenjdk/openjdk8:jdk8u202-b08-alpine-slim
 
   # Copy the jar to the production image from the builder stage.
-COPY --from=builder /publish/build/libs/publish-*.jar /publish.jar
+COPY --from=builder /subscribe/build/libs/subscribe-*.jar /subscribe.jar
 
   # Run the web service on container startup.
 CMD ["java","-Djava.security.egd=file:/dev/./urandom","-Dserver.port=${PORT}","-jar","/publish.jar"]
