@@ -20,4 +20,4 @@ FROM adoptopenjdk/openjdk8:jdk8u202-b08-alpine-slim
 COPY --from=builder /subscribe/build/libs/subscribe-*.jar /subscribe.jar
 
   # Run the web service on container startup.
-CMD ["java","-Djava.security.egd=file:/dev/./urandom","-Dserver.port=${PORT}","-jar","/publish.jar"]
+CMD ["java","-Djava.security.egd=file:/dev/./urandom","-Dserver.port=${PORT}","-jar","/subscribe.jar"]

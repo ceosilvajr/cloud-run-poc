@@ -1,6 +1,8 @@
 package com.ceosilvajr.publish.controller
 
+import com.ceosilvajr.publish.utils.PublisherApp
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 
 /**
@@ -9,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class MainController {
 
-    @GetMapping("/")
-    fun hello(): String {
-        return "Publish endpoint works!"
+    @GetMapping("/{topicId}/{message}")
+    fun publish(@PathVariable topicId: String, @PathVariable message: String): String {
+        return PublisherApp.execute(topicId, message)
     }
 }
